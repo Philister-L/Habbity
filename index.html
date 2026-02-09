@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Habbity — трекер привычек</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app__header">
+        <div>
+          <p class="app__eyebrow">Твой трекер</p>
+          <h1>Habbity</h1>
+          <p class="app__subtitle">Следи за привычками, сохраняй темп и отмечай прогресс каждый день.</p>
+        </div>
+        <div class="date-card">
+          <span id="today-label"></span>
+          <strong id="today-date"></strong>
+        </div>
+      </header>
+
+      <section class="quick-stats" aria-label="Статистика за день">
+        <div class="stat-card">
+          <span>Всего привычек</span>
+          <strong id="total-habits">0</strong>
+        </div>
+        <div class="stat-card">
+          <span>Сегодня выполнено</span>
+          <strong id="completed-today">0</strong>
+        </div>
+        <div class="stat-card">
+          <span>Недельный темп</span>
+          <strong id="weekly-rate">0%</strong>
+        </div>
+      </section>
+
+      <section class="create-habit" aria-label="Создать привычку">
+        <form id="habit-form">
+          <label>
+            Название привычки
+            <input
+              id="habit-name"
+              name="habit-name"
+              type="text"
+              placeholder="Например: 10 минут медитации"
+              required
+              maxlength="60"
+            />
+          </label>
+          <label>
+            Напоминание
+            <input
+              id="habit-reminder"
+              name="habit-reminder"
+              type="text"
+              placeholder="Когда планируешь выполнять?"
+              maxlength="80"
+            />
+          </label>
+          <label>
+            Цвет акцента
+            <select id="habit-color" name="habit-color">
+              <option value="#7C5CFF">Фиолетовый</option>
+              <option value="#3BA99C">Бирюзовый</option>
+              <option value="#F18F01">Оранжевый</option>
+              <option value="#EF476F">Розовый</option>
+              <option value="#118AB2">Синий</option>
+            </select>
+          </label>
+          <button type="submit">Добавить привычку</button>
+        </form>
+      </section>
+
+      <section class="habits" aria-label="Список привычек">
+        <div class="habits__toolbar">
+          <h2>Мои привычки</h2>
+          <div class="filter">
+            <button type="button" data-filter="all" class="is-active">Все</button>
+            <button type="button" data-filter="completed">Выполнены</button>
+            <button type="button" data-filter="active">Нужно сделать</button>
+          </div>
+        </div>
+        <div id="habits-list" class="habits__list"></div>
+      </section>
+
+      <section class="tips" aria-label="Советы">
+        <h2>Совет дня</h2>
+        <p id="tip-text"></p>
+      </section>
+    </div>
+
+    <template id="habit-card-template">
+      <article class="habit-card">
+        <div class="habit-card__header">
+          <div>
+            <h3 class="habit-card__title"></h3>
+            <p class="habit-card__reminder"></p>
+          </div>
+          <button type="button" class="habit-card__toggle"></button>
+        </div>
+        <div class="habit-card__meta">
+          <div>
+            <span>Серия</span>
+            <strong class="habit-card__streak"></strong>
+          </div>
+          <div>
+            <span>Лучшая серия</span>
+            <strong class="habit-card__best"></strong>
+          </div>
+          <div>
+            <span>Выполнений за 7 дней</span>
+            <strong class="habit-card__weekly"></strong>
+          </div>
+        </div>
+        <div class="habit-card__progress">
+          <div class="progress-track">
+            <div class="progress-fill"></div>
+          </div>
+          <span class="progress-label"></span>
+        </div>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
