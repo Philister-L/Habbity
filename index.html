@@ -81,10 +81,13 @@
       <section class="habits" aria-label="Список привычек">
         <div class="habits__toolbar">
           <h2>Мои привычки</h2>
-          <div class="filter">
-            <button type="button" data-filter="all" class="is-active">Все</button>
-            <button type="button" data-filter="completed">Выполнены</button>
-            <button type="button" data-filter="active">Нужно сделать</button>
+          <div class="habits__actions">
+            <button type="button" id="reset-today" class="ghost-button">Сбросить сегодня</button>
+            <div class="filter">
+              <button type="button" data-filter="all" class="is-active">Все</button>
+              <button type="button" data-filter="completed">Выполнены</button>
+              <button type="button" data-filter="active">Нужно сделать</button>
+            </div>
           </div>
         </div>
         <div id="habits-list" class="habits__list"></div>
@@ -103,7 +106,10 @@
             <h3 class="habit-card__title"></h3>
             <p class="habit-card__reminder"></p>
           </div>
-          <button type="button" class="habit-card__toggle"></button>
+          <div class="habit-card__controls">
+            <button type="button" class="habit-card__toggle"></button>
+            <button type="button" class="habit-card__delete" aria-label="Удалить привычку">✕</button>
+          </div>
         </div>
         <div class="habit-card__meta">
           <div>

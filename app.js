@@ -19,6 +19,7 @@ const tipText = document.querySelector("#tip-text");
 const todayLabel = document.querySelector("#today-label");
 const todayDate = document.querySelector("#today-date");
 const filterButtons = document.querySelectorAll(".filter button");
+const resetTodayButton = document.querySelector("#reset-today");
 
 const today = new Date();
 const todayKey = formatDate(today);
@@ -128,6 +129,9 @@ function renderHabits(habits) {
     toggle.classList.add(doneToday ? "is-complete" : "is-pending");
     toggle.addEventListener("click", () => toggleHabit(habit.id));
 
+    const deleteButton = card.querySelector(".habit-card__delete");
+    deleteButton.addEventListener("click", () => deleteHabit(habit.id));
+
     const { streak, best } = computeStreak(habit);
     card.querySelector(".habit-card__streak").textContent = `${streak} дней`;
     card.querySelector(".habit-card__best").textContent = `${best} дней`;
@@ -156,6 +160,26 @@ function toggleHabit(id) {
     const { streak, best } = computeStreak(updatedHabit);
     return { ...updatedHabit, streak, bestStreak: best };
   });
+  saveHabits(updated);
+  updateStats(updated);
+  renderHabits(updated);
+}
+
+function deleteHabit(id) {
+  const habits = loadHabits();
+  const updated = habits.filter((habit) => habit.id !== id);
+  saveHabits(updated);
+  updateStats(updated);
+  renderHabits(updated);
+}
+
+function resetTodayCompletions() {
+  const habits = loadHabits();
+  const updated = habits.map((habit) => ({
+    ...habit,
+    completions: (habit.completions || []).filter((day) => day !== todayKey),
+    streak: 0,
+  }));
   saveHabits(updated);
   updateStats(updated);
   renderHabits(updated);
@@ -214,6 +238,7 @@ function bindFilters() {
 }
 
 habitForm.addEventListener("submit", addHabit);
+resetTodayButton.addEventListener("click", resetTodayCompletions);
 
 function init() {
   setDateHeader();
