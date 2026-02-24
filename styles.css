@@ -172,6 +172,29 @@ body {
   font-size: 26px;
 }
 
+
+.habits__actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ghost-button {
+  border: 1px solid #d7dbe3;
+  background: var(--card);
+  color: var(--muted);
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.ghost-button:hover {
+  color: var(--text);
+  border-color: #b8bfcc;
+}
+
 .filter {
   display: inline-flex;
   background: var(--card);
@@ -230,6 +253,12 @@ body {
   font-size: 13px;
 }
 
+.habit-card__controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
 .habit-card__toggle {
   border: none;
   border-radius: 12px;
@@ -242,6 +271,17 @@ body {
 .habit-card__toggle.is-complete {
   background: rgba(59, 169, 156, 0.15);
   color: #26756b;
+}
+
+.habit-card__delete {
+  border: 1px solid #f3ced8;
+  background: #fff5f7;
+  color: #b83454;
+  border-radius: 12px;
+  width: 36px;
+  height: 36px;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .habit-card__toggle.is-pending {
@@ -310,6 +350,10 @@ body {
 
   .habit-card__meta {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .habit-card__controls {
+    width: 100%;
   }
 
   .habit-card__toggle {
